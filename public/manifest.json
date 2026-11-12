@@ -1,0 +1,17 @@
+{
+  "name": "UniVerse",
+  "short_name": "UniVerse",
+  "description": "Premium AI-powered student companion for university academics, exam preparation, notes analysis, study planning, and career guidance.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFF9F8",
+  "theme_color": "#C58FA3",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

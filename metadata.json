@@ -1,0 +1,6 @@
+{
+  "name": "UniVerse",
+  "description": "Premium AI-powered student companion for university academics, exam preparation, notes analysis, study planning, and career guidance.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
