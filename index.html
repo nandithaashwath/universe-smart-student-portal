@@ -1,24 +1,8 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UniVerse</title>
-    <meta name="description" content="Premium AI-powered student companion for university academics, exam preparation, notes analysis, study planning, and career guidance." />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/favicon.svg" />
-    <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#C58FA3" />
-    <meta property="og:title" content="UniVerse" />
-    <meta property="og:description" content="Premium AI-powered student companion for university academics, exam preparation, notes analysis, study planning, and career guidance." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  </head>
-  <body class="bg-[#FFF9F8] text-[#39313A] antialiased selection:bg-[#C58FA3]/20 selection:text-[#39313A]">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+{% extends "base.html" %}{% block title %}UniVerse | Home{% endblock %}{% block content %}
+<section class="hero"><div><span class="eyebrow">✦ YOUR CAMPUS SPACE</span><h1>Your campus.<br><em>All in one place.</em></h1><p>Stay on top of academics, find your people, explore campus events and exchange study essentials.</p><div class="hero-actions">{% if logged_in_user %}<a class="primary-button" href="{{url_for('dashboard')}}">Go to dashboard</a>{% else %}<a class="primary-button" href="{{url_for('register')}}">Get started</a>{% endif %}<a class="outline-button" href="{{url_for('marketplace')}}">Explore marketplace</a></div></div><div class="hero-art"><div class="hero-circle">U</div><span class="float-note">learn ✿ connect ✿ grow</span></div></section>
+<section class="section-block"><div class="section-title"><div><span class="eyebrow">EXPLORE UNIVERSE</span><h2>Everything students need</h2><p>One platform for your academic and campus experience.</p></div></div><div class="feature-grid">
+<a class="feature-card" href="{{url_for('academics')}}"><div class="feature-icon">▤</div><span class="tag">LEARN</span><h3>Academics</h3><p>Keep academic information and study resources organised.</p><b>Explore academics →</b></a>
+<a class="feature-card" href="{{url_for('campus')}}"><div class="feature-icon">▧</div><span class="tag">CONNECT</span><h3>Campus Feed</h3><p>Share updates and catch up with your campus community.</p><b>View campus feed →</b></a>
+<a class="feature-card" href="{{url_for('clubs')}}"><div class="feature-icon">♧</div><span class="tag">GET INVOLVED</span><h3>Clubs & Events</h3><p>Discover student groups, activities and upcoming events.</p><b>Explore clubs →</b></a>
+<a class="feature-card" href="{{url_for('marketplace')}}"><div class="feature-icon">▣</div><span class="tag">BUY & SELL</span><h3>Marketplace</h3><p>Find affordable textbooks, notes and study materials.</p><b>Visit marketplace →</b></a></div></section>
+<section class="section-block"><div class="section-title"><div><h2>Coming up</h2><p>Campus events and activities.</p></div></div><div class="event-grid">{% for e in events %}<article class="event-card"><span class="event-date">{{e.event_date}}</span><h3>{{e.title}}</h3><p>{{e.description}}</p><small>{{e.club_name}} · {{e.location}}</small></article>{% else %}<p>No events yet.</p>{% endfor %}</div></section>{% endblock %}

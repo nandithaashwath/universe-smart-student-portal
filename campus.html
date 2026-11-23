@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Campus Feed | UniVerse{% endblock %}
+{% block content %}
+<section class="page-heading">
+    <span class="eyebrow">✦ STUDENT COMMUNITY</span>
+    <h1>Campus Feed</h1>
+    <p>What's happening around campus? Share an update.</p>
+</section>
+{% if logged_in_user %}
+<form class="post-composer" method="post">
+    <label>Create a post
+        <textarea name="content" rows="3" maxlength="1500" required placeholder="Share an event, question or campus update..."></textarea>
+    </label>
+    <button class="primary-button">Publish post</button>
+</form>
+{% else %}
+<div class="notice">Log in to publish a post. You can still browse.</div>
+{% endif %}
+<section class="section-block">
+    <h2>Recent posts</h2>
+    <div class="feed-list">
+        {% for p in posts %}
+        <article class="feed-card">
+            <div class="feed-avatar">{{ p.author[0].upper() }}</div>
+            <div class="feed-post-body">
+                <strong>{{ p.author }}</strong>
+                <small>{{ p.created_at.strftime('%d %b %Y, %I:%M %p') }}</small>
+                <p>{{ p.content }}</p>
+                {% if logged_in_user and p.user_id == logged_in_user.id %}
+                <form method="POST" action="{{ url_for('delete_post', post_id=p.id) }}" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                    <button type="submit" class="delete-button">Delete</button>
+                </form>
+                {% endif %}
+            </div>
+        </article>
+        {% else %}
+        <div class="empty-card">No posts yet. Be the first!</div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
